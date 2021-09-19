@@ -1,0 +1,74 @@
+
+const API_KEY= 'api_key=805744f392c1c7a526ddfc2a9b1b7787'; //chave com complemento
+const api_key = '805744f392c1c7a526ddfc2a9b1b7787';        //chave sem complemento usando em detalhes.js
+const BASE_URL='https://api.themoviedb.org/3';
+const API_URL= BASE_URL + '/discover/movie?sort_by=popularity.desc&'+API_KEY;
+const IMG_url = 'https://image.tmdb.org/t/p/w500';
+const searchURL = BASE_URL + '/search/movie?' + API_KEY;
+
+const movie_detail = 'https://api.themoviedb.org/3/movie';
+const IMG_Orig = 'https://image.tmdb.org/t/p/original';
+//teste
+const api_js = 'http://localhost:9001/id/comentario'
+//teste final 
+
+const main = document.getElementById('main');
+const form = document.getElementById('form');
+const search = document.getElementById('search');
+//const van = document.getElementById('van');
+
+
+
+getMovies(API_URL);
+
+function getMovies(url) {
+
+    fetch(url).then(res => res.json()).then(data => {
+        console.log(data.results);
+        showMovies(data.results);
+        
+
+    })
+}
+
+function showMovies(data){
+   main.innerHTML = '';
+
+    data.forEach(movie => {
+        const {title, poster_path, vote_average, id} = movie;
+        const movieEl = document.createElement('div');
+        movieEl.classList.add('movie');
+
+        movieEl.innerHTML = `
+        
+        <img onclick="location.href = '/${id}'" src=" ${IMG_url+poster_path}" alt="${title}">
+
+            <div class="movie-info" >
+                <h3> ${title}</h3>
+                <span >${vote_average}</span>
+            </div>                 
+            
+        `
+
+        main.appendChild(movieEl);
+
+    })
+    }
+
+    
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const searchTerm = search.value;
+
+        if(searchTerm) {
+            getMovies(searchURL+'&query='+searchTerm)                   
+        } else {
+            getMovies( API_URL);
+            
+        }
+
+    })
+
+   
