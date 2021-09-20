@@ -8,14 +8,12 @@ const searchURL = BASE_URL + '/search/movie?' + API_KEY;
 
 const movie_detail = 'https://api.themoviedb.org/3/movie';
 const IMG_Orig = 'https://image.tmdb.org/t/p/original';
-//teste
-const api_js = 'http://localhost:9001/id/comentario'
-//teste final 
+
 
 const main = document.getElementById('main');
 const form = document.getElementById('form');
 const search = document.getElementById('search');
-//const van = document.getElementById('van');
+
 
 
 

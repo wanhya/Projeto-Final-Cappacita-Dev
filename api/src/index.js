@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
 connection.connect();
 
 
-//coisas extras
+
 app.use(express.static(initial_path));
 app.use(bodyparser.urlencoded ({extended: false}))
 
@@ -30,6 +30,8 @@ app.get('/', (req, res)=> {
 app.get('/:id', (req, res) => {
    res.sendFile(path.join(initial_path, "detalhes.html"));
 })
+
+
 //rotas
 
 
