@@ -59,6 +59,11 @@ app.post('/comentario', async (req, res) => {
     
 })
 
+
+app.use((req, res) => {
+    res.json("404");
+})
+
 app.listen(9001, '0.0.0.0', function(){
     console.log('conectado na porta 9001');
 })
